@@ -1,0 +1,157 @@
+$border-radius-table: 8px;
+.dex_table {
+  width: 100%;
+  border-spacing: 0 !important;
+  // border: 1px solid var(--color-line);
+  border-radius: $border-radius-table;
+  overflow: auto;
+
+  thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: var(--bg-overview-4);
+  }
+
+  table {
+    border-radius: $border-radius-table;
+    margin-top: 10px;
+    text-align: left;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 150%;
+    text-align: left;
+    // border-bottom: 1px solid var(--color-line);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  th {
+    border-top: none;
+    color: var(--text-over-2);
+    font-weight: bold;
+  }
+
+  td {
+    color: var(--text-over-1);
+  }
+
+  td.App-negative-value {
+    color: var(--color-error);
+  }
+
+  td.App-positive-value {
+    color: var(--color-success);
+  }
+
+  tr:hover {
+    border-radius: $border-radius-table;
+    background-color: var(--table-bg-hover);
+  }
+
+  tr:first-child th:first-child {
+    border-top-left-radius: $border-radius-table;
+    border-bottom-left-radius: $border-radius-table;
+  }
+
+  tr:first-child th:last-child {
+    border-bottom-right-radius: $border-radius-table;
+    border-top-right-radius: $border-radius-table;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:last-child td:first-child {
+    border-bottom-left-radius: $border-radius-table;
+  }
+
+  tr:last-child td:last-child {
+    border-bottom-right-radius: $border-radius-table;
+  }
+
+  .td-right {
+    text-align: right;
+  }
+
+  .td-left {
+    text-align: left;
+  }
+
+  .td-center {
+    text-align: center;
+  }
+
+  tr th {
+    border-top: none;
+  }
+
+  tr td:first-child {
+    border-top: none;
+  }
+}
+
+.text-table-xs {
+  table,
+  th,
+  td {
+    font-size: 12px !important;
+  }
+}
+
+// button cancel order
+.dex_table__cancel-order {
+  width: 30px;
+  cursor: pointer;
+}
+
+//scroll bar
+.dex_table__scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: var(--background-color);
+  border-radius: 20px;
+  scroll-margin-top: 40px;
+}
+
+.dex_table__scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-ob);
+  border-radius: 20px;
+  height: 30px;
+  scroll-margin-top: 40px;
+}
+
+.dex_table__scrollbar::-webkit-scrollbar-track {
+  background: var(--background-color);
+  border-radius: 20px;
+  scroll-margin-top: 40px;
+}
+
+// tr hover cursor: pointer
+.cursor-pointer {
+  tr:hover td {
+    cursor: pointer;
+  }
+}
+
+.dex_table__non-scrollbar {
+  overflow: visible !important;
+
+  > tr {
+    > td {
+      padding-right: 30px;
+    }
+  }
+}
+
+.dex_table--td-time {
+  min-width: 150px;
+}

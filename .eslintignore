@@ -1,0 +1,7 @@
+node_modules/
+dist
+**/scripts/*.js
+*.css
+*.svg
+src/charting_library
+public/charting_library
