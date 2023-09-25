@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import NavBar from 'src/components/NavBar/NavBar';
 import routers from 'src/routes/routes';
 import { useAppSelector } from 'src/store/hooks';
 import styles from 'src/styles/App.module.scss';
-import { BaseSocket } from 'src/socket/BaseSocket';
 
 const App: React.FC<any> = () => {
   const theme = useAppSelector((state) => state.theme.themeMode);
@@ -14,9 +13,6 @@ const App: React.FC<any> = () => {
   const checkRenderSidebar = (path: string) => {
     return !!['/account'].find((i) => path.indexOf(i) !== -1);
   };
-  useEffect(() => {
-    BaseSocket.getInstance().connect();
-  }, []);
 
   return (
     <div id="body" className="App">

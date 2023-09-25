@@ -1,16 +1,11 @@
 {
-  "short_name": "Sota DEX",
-  "name": "Sota Decentralized Exchange",
+  "short_name": "VRF",
+  "name": "VRF Project",
   "icons": [
     {
-      "src": "logo192.png",
+      "src": "logo.svg",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
