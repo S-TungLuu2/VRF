@@ -9,3 +9,5 @@ export { default as toastIconClose } from 'src/assets/icon/iconoir_close.svg';
 export { default as toastIconError } from 'src/assets/icon/fluent-mdl2_processing-cancel.svg';
 export { ReactComponent as IconCloseToast } from 'src/assets/icon/dark/iconX-toast.svg';
 export { default as toastIconCancel } from 'src/assets/icon/toast-cancel-icon.svg';
+export { default as DropIcon } from 'src/assets/icon/drop-icon.svg';
+export { default as LinkIcon } from 'src/assets/icon/link-icon.svg';

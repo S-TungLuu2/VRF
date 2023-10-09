@@ -1,0 +1,125 @@
+:root {
+  .select-wrapper {
+    position: relative;
+    margin-right: 16px;
+    @media only screen and (max-width: 970px) {
+      display: none;
+    }
+
+    > ul {
+      & > li::marker {
+        content: '';
+      }
+      list-style-type: none;
+    }
+
+    > ul {
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+    > ul li:hover ul {
+      display: block;
+    }
+    .select-title {
+      color: var(--bg-modal-pre);
+      font-size: 16px;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      padding: 7px 0px;
+      white-space: nowrap;
+
+      &::marker {
+        content: none;
+      }
+
+      .icon {
+        margin-bottom: 1px;
+        margin-left: 5px;
+      }
+      &:hover {
+        color: var(--color-primary-1);
+        > svg path {
+          fill: var(--color-primary-1);
+        }
+        .icon {
+          transform: rotate(3.142rad);
+        }
+      }
+    }
+    .option {
+      display: none;
+      position: absolute;
+      min-height: auto;
+      background-color: var(--bg-navbar);
+      box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      z-index: 999;
+
+      > li {
+        display: block;
+        &:nth-child(2) {
+          margin-top: 12px;
+        }
+      }
+
+      .option-text {
+        font-size: 16px;
+        color: var(--text-item-select-header);
+        margin-left: 15px;
+        text-align: left;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      .value-no-link {
+        padding-right: 36px !important;
+      }
+
+      .option-value {
+        height: 49px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        padding-right: 60px;
+        text-decoration: none;
+
+        &:hover {
+          border-radius: 8px;
+          background-color: var(--bg-hover-item-select-header);
+          .link-icon {
+            display: block;
+          }
+        }
+
+        > a {
+          text-decoration: none;
+          display: flex;
+        }
+
+        .link-icon {
+          display: none;
+          margin-bottom: 5px;
+          position: absolute;
+          right: 0;
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .ul {
+      display: inline;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hover {
+      &:hover {
+        display: block;
+      }
+    }
+  }
+}

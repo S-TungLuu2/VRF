@@ -1,3 +1,4 @@
+@import './table.module.scss';
 @font-face {
   font-family: 'inter-regular';
   src: url('../assets/fonts/Inter/Inter-Regular.ttf') format('truetype'),
@@ -9,10 +10,11 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 300;
-  src: url('../assets/fonts/Inter/Inter-Thin.ttf') format('truetype'),
+  src: url('../assets/fonts/Inter/Inter-Thin.ttf') format('truetype');
 }
 
 body {
+  // zoom: 90%;
   background-color: var(--background-color);
   font-family: 'inter-regular';
   margin: 0;
@@ -22,11 +24,12 @@ body {
   iframe {
     z-index: -1 !important;
   }
+  .is-open {
+    height: 100%;
+    overflow: hidden;
+  }
 }
-.is-open {
-  height: 100%;
-  overflow: hidden !important;
-}
+
 .App {
   text-align: center;
   color: var(--text-body-color);
@@ -73,6 +76,18 @@ body {
   color: white;
 }
 
+.App-link {
+  color: #61dafb;
+}
+
+.App-positive-value {
+  color: var(--color-position) !important;
+}
+
+.App-negative-value {
+  color: var(--color-negative) !important;
+}
+
 $size-origin: 1px;
 // SPACING BLOCK
 $space-2: calc(#{$size-origin} * 2);
@@ -92,9 +107,17 @@ $space-160: calc(#{$size-origin} * 160);
 $header-height: 83px;
 :root {
   .navbar {
+    // position: fixed;
+    // top: 0;
     width: 100%;
     flex-shrink: 0;
+    // z-index: 1000;
   }
+  .footer {
+    bottom: 0;
+    flex-shrink: 0;
+  }
+  // content: css for Trade dashboard , contentFlex for Account overview
   .contentFlex,
   .content {
     // overflow: auto;
@@ -104,10 +127,10 @@ $header-height: 83px;
     // height: 100%;
     flex: 1;
     min-width: 1440px;
-    background: var(--bg-overview-4);
     @media only screen and (max-width: 1440px) {
       min-width: auto;
     }
+    // background-color: var(--color-background-order-wrapper);
     @media only screen and (max-width: 567px) {
       // margin-top: 60px;
       min-width: 100%;
@@ -142,19 +165,847 @@ $header-height: 83px;
   .apexcharts-text {
     fill: var(--text-body-color);
   }
- 
+  --text-title-color: #28293d;
+  // navbar
+  --nav-bar-bg: #e0e0e0;
+  // color
+  --color-value-4: #333333;
+  --color-white: #fff;
+  --color-primary: #3e7bfa;
+  --color-bg-btn-primary: rgba(62, 123, 250, 0.15);
+  --color-primary-darker: #3a449c;
+  --color-primary-lighter: #b4e5f9;
+  --color-title-active: #14142b;
+  --color-title-active-dark: #ffffff;
+  --color-body: #4e4b66;
+  --color-label: #8f90a6;
+  --color-value-default: #999999;
+  --color-text-long: #02ad8f;
+  --color-text-short: #e13447;
+  --color-placeholder: #a0a3bd;
+  --color-placeholder-dark: #828282;
+  --color-line: #e4e4eb;
+  --color-input-bg: #e6e8ea;
+  --color-bg: #f5f5f5;
+  --color-disabled: #e4e4eb;
+  --color-secondary: #2e1c8d;
+  --color-error: #f84960;
+  --color-bg-btn-error: rgba(229, 53, 53, 0.15);
+  --color-bg-btn-error-disable: #f7f7f7;
+  --color-success: #06c270;
+  --color-bg-btn-success: rgba(5, 166, 96, 0.15);
+  --color-bg-btn-success-disable: #f7f7f7;
+  --color-warning: #ffcc00;
+  --color-primary-gradient: linear-gradient(105.99deg, #1a88c9 -4.53%, #9149ff 153.37%);
+  --color-secondary-gradient: linear-gradient(106.92deg, #da1a5d -12.65%, rgba(158, 118, 252, 0) 167.6%);
+  --color-border: #e0e0e0;
+  --color-bg-table: #fafafa;
+  --color-bg-active-route: rgba(62, 123, 250, 0.15);
+  --color-primary-1: #00ddb3;
+  --color-primary-2: #00b277;
+  --color-primary-disable: #c1fff3;
+  --color-label-2: #888888;
+  --color-value-1: #333333;
+  --color-last-price: #e02d3c;
+  --color-short-price: #e02d3c;
+  --color-hover-select: #00ddb3;
+  --color-bg-btn-1: #dedede;
+  --color-bg-btn-2: #00ddb3;
+  --color-bg-btn-4: #00ddb3;
+  --color-position: #00b277;
+  --color-negative: #e02d3c;
+  // orderbook
+  --color-row-odd: #41404008;
+  --color-bg-option-ob: #ebebf0;
+  --color-bg-ask-mb: rgba(229, 53, 53, 0.35);
+  --color-bg-bid-mb: rgba(5, 166, 96, 0.35);
+  --color-scrollbar-ob: #e4e4eb;
+  --color-scrollbar-track-ob: #fafafc;
+  --color-bg-lastprice-increase: rgba(5, 166, 96, 0.15);
+  --color-bg-lastprice-decrease: rgba(229, 53, 53, 0.15);
+  // connect wallet
+  --color-dialog-bg: #ffffff;
+  --color-dialog-title: #4e4b66;
+  --color-dialog-label: #6e7191;
+  --color-dialog-btn-bg: #f5f5f5;
+  --color-connect-wallet-select-bg: #e4e4eb;
+  --color-connect-wallet-select-bg-hover: #e9f4fa;
+  --color-connect-wallet-select-body: #6e7191;
+  --color-connect-wallet-input-bg: #ffffff;
+  --color-connect-wallet-input-border: #333333;
+  --color-background-order-form_cross: #00ddb3;
+  --color-background-button_confirm_hover: #06bc9b;
+  --color-background-order-form_close: #dedede;
+  --color-background-order-form_filter: #fafafd;
+  --color-background-button_confirm: #c1fff3;
+  --color-background-text_button_confirm: #888888;
+  --color-background-message_error: #e02d3c;
+  --color-connected-wallet-bg: #ffffff;
+  --color-box-shadow-1: #c8d0e7;
+  --color-box-shadow-2: #ffffff;
+  // Select2
+  --color-select-body: #ffffff;
+  --color-select-option-bg-hover: #1a88c9;
+  --border-select: #828282;
+  // slippage tolerance
+  --color-slippage-btn: #a0a3bd;
+  --color-slippage-input: #a0a3bd;
+  // button
+  --btn-text-disabled: var(--color-placeholder);
+  --btn-border-secondary-disabled: #dbdce0;
+  --background-color-dashboard: rgba(51, 51, 51, 0.08);
+  --background-color: #fafafc;
+  --block-background: #fafafa;
+  --nav-bar-bg: #fefcfc;
+  --text-color: #555770;
+  --title-active: #14142b;
+  --arrow-icon: #a0a3bd;
+  --primary-button-bg: #1a88c9;
+  --label: #6e7191;
+  --body-text: #4e4b66;
+  --placeholder: #a0a3bd;
+  --line: #e0e0e0;
+  --data-table: #4e4b66;
+  --popup-background: #ffffff;
+  --tab-text-color: #a0a3bd;
+  --tab-text-color-transaction: #000000;
+  --input-background: #ffffff;
+  --border-input-background: #d9dbe9;
+  --popup-input-color: #333333;
+  --active-tab: #6e7191;
+  --background-dropdown: #ffffff;
+  --detail-button-mytransaction: #f5f5f5;
+  --trade-button-mytransaction: #dadada;
+  --trade-button-active-mytransaction: #bebebe;
+  --under-line: #c5c6cc;
+  // trading view chart
+  --trading-view-btn-background-active: #1a88c9;
+  --pair-block-background: #ffffff;
+  --filter-input-background: #e0e0e0;
+  --filter-input-border: #e6e8ea;
+  // sidebar
+  --bg-sidebar: #fafafa;
+  --bg-sidebar-2: #f5f5f5;
+  --table-color: #ffffff;
+  --bd-sidebar: 1px solid rgba(228, 228, 235, 0.7);
+  --color-table-divider: #e6e8ea;
+  --color-order-input-bg: #e6e8ea;
+  --bg-active-item: rgba(62, 123, 250, 0.15);
+  --active-route: #e6e8ea;
+  --color-route: #6e7191;
+  --text-color-sidebar: #8f90a6;
+  --text-active-sidebar: #3e7bfa;
+  //overview
+  --bg-overview-1: #ffffff;
+  --bg-overview-2: #f2f2f5;
+  --bg-overview-3: #f5f5f5;
+  --text-over-1: #8f90a6;
+  --text-over-2: #555770;
+  //position
+  //history
+  //order
+  // line graph
+  --background-line-graph: #fafafa;
+  --divider-line-graph: #e8e8ed;
+  --label-line-graph: #4e4b66;
+  --line-graph-color-1: #f4a164;
+  --line-graph-color-2: #8b85e2;
+  // spline graph
+  --background-spline-graph: #f8f8f8;
+  // date range picker
+  --background-date-range-picker: #ffffff;
+  --range-on-select: #f8f7fa;
+  --color-on-select: #1988c9;
+  --color-date-range-picker: #191819;
+  --color-month-name: #19181a;
+  --border-date-range-picker: #f6f6f7;
+  --passive-date: #a3a3a3;
+  --color-cancel-btn: #19181a;
+  // radio create new pool
+  --bg-radio: var(--color-white);
+  --bg-checked-radio: #f7f7fc;
+  --border-radio: var(--color-primary);
+  // matrix price
+  --bg-matrix-price: #e6e8ea;
+  // weight change popup
+  --border-weight-change-popup: #d6d6d6;
+  // date picker
+  --color-date-picker: #333;
+  // table
+  --color-line-table: #e4e4eb;
+  --border-primary: #3e7bfa;
+  --text-primary: #3e7bfa;
+  --dark-text: #8f90a6;
+  --border-dark: #dfe3e8;
+  --bg-primary: #3e7bfa;
+  --color-body: #8f90a6;
+  --color-header-table: #555770;
+  --color-red: #e53535;
+  --color-arrowNext: linear-gradient(270deg, #fafafc 71.88%, rgba(250, 250, 252, 0) 100%);
+  --text-verified-email: #05a660;
+  // tooltip
+  --tooltip-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  --tooltip-border: 1px solid #e0e0e0;
+  --color-tooltip-bg: #ffffff;
+  --color-tooltip-title: #14142b;
+  --color-tooltip-body: #4e4b66;
+  // scroll background
+  --bg-scroll-ff: #ffffff;
+  // checkbox image
+  --checkbox-image-color: #ffffff;
+  // pop up buttons
+  --pop-up-button--1: #1a88c9;
+  // Datagrid
+  --datagrid-color: rgba(255, 255, 255, 0.85);
+  --datagrid-backgroundColor: #fafafa;
+  --datagrid-borderBottom: #e0e0e0;
+  --datagrid-cell: #a0a3bd;
+  --datagrid-cellColor: #4e4b66;
+  --datagrid-overlayColor: rgba(0, 0, 0, 0.85);
+  --outline-input: #6698fa;
 }
 
 [data-theme='light-theme'] {
+  --color-text-pagination: #00ddb3;
+  --color-background-pagination: #ffffff;
+  --color-outline-pagination: #00ddb3;
+  --color-label-5: #888888;
+  --color-date-range-day: #333333;
+  --color-text-footer: #888888;
+  --color-background-footer: #191919;
+  --color-error: #e02d3c;
+  --color-last-price: #000000;
+  --color-bg-btn-3: #00ddb3;
+  --color-bg-btn-2: #c1fff3;
+  --background-table-header: #f8f8f8;
+  --color-label-6: #333333;
+  --color-label-4: #888888;
+  --color-label-2: #888888;
+  --color-value-3: #333333;
+  --color-bg-btn-1: #dedede;
+  --background-color-modal: #ffffff;
+  --background-table-header: #f8f8f8;
+  --color-label-3: #888888;
+  --color-background-order-wrapper: #ffffff;
+  --color-background-content: #ffffff;
   --background-color: #ffffff;
-  --bg-btn-menu: #ffffff;
+  --btn-hover-blur: rgba(62, 123, 250, 0.3);
+  --btn-hover: #3568d4;
+  --text-input-email: #28293d;
+  --border-input: #e4e4eb;
+  --text-input: #28293d;
+  --bg-err-noti: #f8e7e8;
+  --bg-success-noti: #e3f2ec;
+  // chart tab
+  --color-label: rgba(143, 144, 166, 1);
+  --text-detail: rgba(85, 87, 112, 1);
+  // navbar
+  --name-pj: #2f2f3a;
+  --navbar-item: rgba(85, 87, 112, 1);
+  //orderboook
+  --text-orderbook: #555770;
+  --border-market: rgba(62, 123, 250, 0.3);
+  --text-type-item: rgba(143, 144, 166, 1);
+  --text-field-label: rgba(85, 87, 112, 1);
+  --text-leverage: rgba(40, 41, 61, 1);
+  --text-info: rgb(85, 87, 112);
+  --text-input: rgba(40, 41, 61, 1);
+  --bg-negative-value: #f8eaec;
+  --border-negative-value: rgba(229, 53, 53, 0.5);
+  --bg-positive-value: #e3f2ec;
+  --border-positive-value: rgba(228, 228, 235, 0.5);
+  //Pagination
+  --border-pagination: #dfe3e8;
+  --border-color-pagination: #dedede;
+  // table
+  --table-bg: #fff;
+  --table-bg-hover: #f9f9fa;
+  //order account
+  --text-no-record: #8f90a6;
+  //button
+  --btn-overlay-bg-disable: #e4e4eb;
+  --bg-wallet-detail: #ffffff;
+  --bg-search-market: #f2f2f5;
+  --title-choose-wallet: #28293d;
+  --bg-choose-wallet: #ffffff;
+  --bg-btn-cancel-order: #f7e2e3;
+  --border-cancel-order: #c7c9d9;
+  --bg-tooltip: #191919cc;
+  --text-tooltip: #ffffff;
+  --bg-order-detail: #ffffff;
+  // calculator
+  --text-tab-inactive: #888888;
+  --text-tab-active: #333333;
   --bg-overview-4: #fbfbfb;
+  --text-title-input: #888888;
+  //order
+  --bg-order: #fff;
+  --bg-order-input: #f8f8f8;
+  --bg-button: #dedede;
+  --color-available: #888888;
+  --color-text: #333333;
+  --color-type-item: #dedede;
+  --color-order-label: #888888;
+  --color-order-label-active: #333333;
+  --checkmark: #dedede;
+  // stopModal
+  --bg-modal: #ffffff;
+  --bg-modal-item: #888888;
+  --modal-item-active: #00ddb3;
+  --color-dialog-background: #ffffff;
+  --color-dialog-title: #2d303b;
+  --color-transfer-box: #f8f8f8;
+  --color-text-transfer: #888888;
+  --color-text-label: #000000;
+  --color-background-input-group: #f8f8f8;
+  --color-input-group: #000000;
+  --color-max-btn: #00ddb3;
+  --color-background-button-confirm: #c1fff3;
+  --color-button-confirm-disabled: #888888;
+  --color-coin-price: #2d303b;
+  --color-text-desc: #888888;
+  --color-search-value: #f8f8f8;
+  --color-coin-select: #424754;
+  --color-coin-label: #6d7387;
+  --color-select-list: #ffffff;
+  --color-background-select-search: #f8f8f8;
+  --color-input-select-search: #000000;
+  --color-coin-value: #333333;
+  --bg-navbar: #6e8a98;
+  --bg-modal-pre: #ffffff;
+  --border-pre: #f8f8f8;
+  --text-tab: #888888;
+  --text-pre-content: #333333;
+  --switch-color: #ffffff;
+  --switch-bg: #dedede;
+  --switch-disable: #dedede;
+  --switch-enable: #00ddb3;
+  --bg-tab-general: #f1fffc;
+  --text-general-active: #333333;
+  --text-select: #000000;
+  --bg-select: #ffffff;
+  --bg-select-search: #f8f8f8;
+  --text-item-search: #333333;
+  --text-item-select-header: #191919;
+  --bg-hover-item-select-header: #f1fffc;
+  --text-place-holder-search: #dedede;
+  --bg-filter-order-book: #f1fffc;
+  //calculator
+  --bg-select-cal: #f8f8f8;
+  --border-line-cal: #dedede;
+  --text-leverange: #888888;
+  --bg-btn-cal-disable: #c1fff3;
+  --text-btn-disable: #888888;
+  --bg-input-open-price: rgba(222, 222, 222, 0.3);
+  // date picker
+  --color-text-middle: #888888;
+  --color-date: #f8f8f8;
+  --color-place-holder: #6d7387;
+  --color-date-label: #888888;
+  --color-date-modal: #ffffff;
+  --color-date-value: #333333;
+  --color-date-range: #f1fffc;
+  --color-week-day-label: #888888;
+  --color-not-selected-date: #424754;
+  --color-date-icon: #424754;
+  --color-disable-date: #dedede;
+  // table position
+  --table-bg: #fff;
+  --table-bg-hover: #f9f9fa;
+  --color-value-1: #333333;
+  --text-leverage: #dedede;
+  --color-input-position: #dedede;
+  --color-input-modal: #f8f8f8;
+  --color-tab: #dedede;
+  --color-background-modal: #ffffff;
+  --color-modal-desc: #888888;
+  --color-background-select: #f8f8f8;
+  --color-order-box: #f8f8f8;
+  --color-input-stop-price: #ffffff;
+  --color-table-header: #ffffff;
+  --color-dialog-bg: #ffffff;
+  --color-tab-item: #333333;
+  --color-tab-items-active: #f1fffc;
+  --color-tab-border-right: #f8f8f8;
+  --color-select-value: #f8f8f8;
+  --color-select-list: #ffffff;
+  --color-background-select-search: #f8f8f8;
+  --color-select-search-placeholder: #dedede;
+  --color-no-data-desc: #dedede;
+  --bg-cal-range: #f8f8f8;
+  --bg-btn-disable-margin-mode: #c1fff3;
+  --bg-btn-menu: #ffffff;
+  --text-terminated: #333333;
+  --border-nav: #f8f8f8;
+  --border-pair: #f8f8f8;
+  --border-pair-2: #f8f8f8;
+  --text-tab-inactive-2: #888888;
+  --bg-switch: #dedede;
+  --bg-switch-btn: #ffffff;
+  --bg-input-notification: #f8f8f8;
+  --bg-switch-enable: #ffffff;
+  --bg-btn-time: #dedede4d;
+  --color-btn-cal: #333333;
+  --color-tooltip: rgba(51, 51, 51, 0.8);
+  --color-divider: #f8f8f8;
+  --color-title-dialog: #191919;
+  --color-bg-bid: #e5f7f1;
+  --color-bg-ask: #fceaeb;
+  --color-label-6: #333333;
+  --bg-tooltip-1: rgba(25, 25, 25, 0.8);
+  --bg-date-picker: #f8f8f8;
+  --bg-time-webview: #f2f2f2;
+  --color-text-webview: #000000;
+  --bg-select-list: #ffffff;
+  --bg-line: #e3e3e3;
+  // Future Orders
+  --bg-order-title: #1b1d24;
+  --bg-scroll-thumb: #888888;
+  --bg-scroll-track: #dedede;
+  --bg-scroll-thumb-calulator: #e4e4eb;
+  --border-calculator: #dedede;
+  --color-scrollbar: #888888;
+  --color-scrollbar-thumb: #dedede;
+  --color-scrollbar-track: #f8f8f8;
+  --color-tab-active: #333333;
+  --color-tab-inactive: #888888;
 }
 
 [data-theme='dark-theme'] {
-  --background-color: #1c1c28;
+  --bg-line: #424754;
+  --bg-select-list: #1b1d24;
+  --color-text-webview: #ffffff;
+  --bg-time-webview: #1c1f24;
+  --bg-date-picker: #2d303b;
+  --bg-tooltip-1: rgba(45, 48, 59, 0.9);
+  --color-label-6: #424754;
+  --color-title-dialog: #ffffff;
+  --color-text-pagination: #00ddb3;
+  --color-background-pagination: #2d303b;
+  --color-outline-pagination: #00ddb3;
+  --color-label-5: #6d7387;
+  --color-date-range-day: #ffffff;
+  --color-text-footer: #6d7387;
+  --color-background-footer: #121318;
+  --color-btn-cal: #333333;
+  --bg-switch: #1b1d24;
+  --bg-switch-btn: #424754;
+  --bg-input-notification: #424754;
+  --bg-switch-enable: #002e26;
+  --text-tab-inactive-2: #ffffff;
+  --color-last-price: #ffffff;
+  --color-bg-btn-3: #00ddb3;
+  --color-bg-btn-2: #44665f;
+  --background-table-header: #1b1d24;
+  --color-label-3: #6d7387;
+  --color-background-order-wrapper: #090a0c;
+  --color-label-6: #ffffff;
+  --color-label-4: #6d7387;
+  --color-label-2: #ffffff;
+  --color-value-3: #333333;
+  --color-bg-btn-1: #424754;
+  --background-color-modal: #2d303b;
+  --background-table-header: #1b1d24;
+  --color-label-3: #6d7387;
+  --color-background-order-wrapper: #090a0c;
+  --bg-cal-range: #1b1d24;
+  --bg-btn-disable-margin-mode: #00ddb3;
   --bg-btn-menu: #121318;
+  --text-terminated: #6d7387;
+  --border-nav: #000000;
+  --border-pair: #121318;
+  --border-pair-2: #121318;
+  --color-background-content: #090a0c;
+  //order
+  --bg-order: #1b1d24;
+  --bg-order-input: #2d303b;
+  --bg-button: #424754;
+  --color-available: #6d7387;
+  --color-text: #ffffff;
+  --color-type-item: #424754;
+  --color-order-label: #6d7387;
+  --color-order-label-active: #6d7387;
+  --checkmark: #424754;
+  // stopModal
+  --bg-modal: #2d303b;
+  --bg-modal-item: #6d7387;
+  --modal-item-active: #00ddb3;
+  --bg-btn-cancel-order: #3a202a;
+  --bg-order-detail: #212130;
+  --bg-tooltip: #212130;
+  --text-tooltip: rgba(164, 164, 169, 1);
+  --border-cancel-order: #3a202a;
+  --title-choose-wallet: rgba(255, 255, 255, 0.87);
+  --bg-choose-wallet: #222333;
+  --bg-search-market: #28293d;
+  --bg-wallet-detail: #222333;
+  --btn-hover-blur: #273967;
+  --btn-hover: #3568d4;
+  --text-input-email: #a4a4a9;
+  //order account
+  --text-no-record: rgba(255, 255, 255, 0.6);
+  //common
+  --text-body-color: #1a1919;
+  --text-title-color: #ffffff;
+  --text-body-color: #848e9c;
+  // navbar
+  --name-pj: #ffffff;
+  --nav-bar-bg: #12161c;
+  --text-input: rgba(255, 255, 255, 0.6);
+  --navbar-item: rgba(255, 255, 255, 0.6);
+  //orderboook
+  --text-orderbook: #e2e2e3;
+  --border-market: rgba(62, 123, 250, 0.3);
+  --text-type-item: rgba(255, 255, 255, 0.38);
+  --text-field-label: rgba(255, 255, 255, 0.38);
+  --text-leverage: rgba(255, 255, 255, 0.6);
+  --text-info: rgba(255, 255, 255, 0.6);
+  --text-input: rgba(255, 255, 255, 0.6);
+  --bg-positive-value: #193130;
+  --bg-negative-value: #2c1e29;
+  --border-negative-value: #3f202a;
+  --border-positive-value: rgba(228, 228, 235, 0.5);
+  //Pagination
+  --border-pagination: #28293d;
+  --border-input: rgba(255, 255, 255, 0.05);
+  --border-color-pagination: #424754;
+  // chart tab
+  --color-label: rgba(255, 255, 255, 0.6);
+  --text-detail: rgba(255, 255, 255, 0.6);
+  // color
+  --bg-err-noti: #3a202a;
+  --bg-success-noti: #193130;
+  --color-white: #fff;
+  --color-primary: #3e7bfa;
+  --color-primary-darker: #3a449c;
+  --color-primary-lighter: #b4e5f9;
+  --color-title-active: #fff;
+  --color-body: #848e9c;
+  --color-placeholder: #828282;
+  --color-line: #333;
+  --color-input-bg: #2a2c33;
+  --color-bg: #232424;
+  --color-disabled: #333;
+  --color-secondary: #8553d1;
+  --color-error: #e02d3c;
+  --color-bg-btn-error: rgba(229, 53, 53, 0.15);
+  --color-bg-btn-error-disable: #8b8b8b;
+  --color-success: #06c270;
+  --color-bg-btn-success: rgba(5, 166, 96, 0.15);
+  --color-bg-btn-success-disable: #8b8b8b;
+  --color-warning: #ffcc00;
+  --color-primary-gradient: linear-gradient(105.99deg, #da1a5d -4.53%, rgba(249, 187, 207, 0) 153.37%);
+  --color-secondary-gradient: linear-gradient(106.92deg, #da1a5d -12.65%, rgba(158, 118, 252, 0) 167.6%);
+  --color-border: #494a4a;
+  --color-bg-table: #232525;
+  --color-bg-active-route: rgba(62, 123, 250, 0.15);
+  // orderbook
+  --color-row-odd: rgba(65, 64, 64, 0.03);
+  --color-bg-option-ob: rgba(255, 255, 255, 0.1);
+  --color-bg-ask: #3a202a;
+  --color-bg-bid: #193130;
+  --color-bg-ask-mb: rgba(229, 53, 53, 0.35);
+  --color-bg-bid-mb: rgba(5, 166, 96, 0.35);
+  --color-scrollbar-ob: #32323d;
+  --color-scrollbar-track-ob: #1c1c28;
+  --color-bg-lastprice-increase: rgba(5, 166, 96, 0.15);
+  --color-bg-lastprice-decrease: rgba(229, 53, 53, 0.15);
+  // connect wallet
+  --color-dialog-bg: #ffffff;
+  --color-dialog-title: #ffffff;
+  --color-dialog-label: #848e9c;
+  --color-dialog-btn-bg: #333333;
+  --color-connect-wallet-select-bg: #333333;
+  --color-connect-wallet-select-bg-hover: #2b6486;
+  --color-connect-wallet-select-body: #ffffff;
+  --color-connect-wallet-input-bg: #333333;
+  --color-connect-wallet-input-border: #333333;
+  --color-connected-wallet-bg: #3d4045;
+  // Select2
+  --color-select-body: #333333;
+  --color-select-option-bg-hover: #828282;
+  --border-select: #3d4045;
+  // button
+  --btn-text-disabled: #4f4f4f;
+  --btn-border-secondary-disabled: #333;
+  --btn-overlay-bg-disable: black;
+  // slippage tolerance
+  --color-slippage-btn: #3d4045;
+  --color-slippage-input: #ffffff;
+  --background-color: #1c1c28;
+  --block-background: #2a2c33;
+  --nav-bar-bg: #12161c;
+  --text-color: #ffffff;
+  --title-active: #ffffff;
+  --primary-button-bg: #1a88c9;
+  --label: #3d4045;
+  --body-text: #848e9c;
+  --placeholder: #828282;
+  --line: #333333;
+  --data-table: #ffffff;
+  --popup-background: #2a2c33;
+  --tab-text-color: #848e9c;
+  --tab-text-color-transaction: #ffffff;
+  --input-background: #1c1c28;
+  --border-input-background: #333333;
+  --popup-input-placeholder: #828282;
+  --popup-input-color: #828282;
+  --active-tab: #ffffff;
+  --background-dropdown: #2a2c33;
+  --detail-button-mytransaction: #3d4045;
+  --trade-button-mytransaction: #3d4045;
+  --trade-button-active-mytransaction: #747474;
+  --under-line: #848e9c;
+  // input
+  --pair-block-background: #333333;
+  // trading-view-chart
+  --trading-view-btn-background-dark: #828282;
+  --filter-input-background: #3d4045;
+  --filter-input-border: #333333;
+  // sidebar
+  --bg-sidebar: #2a2c33;
+  --bg-sidebar-2: #1c1c28;
+  --bd-sidebar: 1px solid rgba(255, 255, 255, 0.1);
+  --color-table-divider: #8282824c;
+  --table-color: #2a2c33;
+  --color-order-input-bg: #3d4045;
+  --bg-active-item: rgba(62, 123, 250, 0.15);
+  --active-route: #3d4045;
+  --color-route: #848e9c;
+  --text-color-sidebar: #ffffff;
+  --text-active-sidebar: #3e7bfa;
+  //overview
+  --bg-overview-1: #212130;
+  --bg-overview-2: rgb(255, 255, 255, 0.1);
+  --bg-overview-3: #1c1c28;
+  --text-over-1: rgb(255, 255, 255, 0.6);
+  --text-over-2: rgb(255, 255, 255, 0.87);
+  // line graph
+  --background-line-graph: #242628;
+  --divider-line-graph: #333333;
+  --label-line-graph: #ffffff;
+  --line-graph-color-1: #f4a164;
+  --line-graph-color-2: #8b85e2;
+  // spline graph
+  --background-spline-graph: #27292d;
+  // date range picker
+  --background-date-range-picker: #28272a;
+  --range-on-select: #2a2c33;
+  --color-on-select: #f8f7fa;
+  --color-date-range-picker: #c9c8cc;
+  --color-month-name: #f8f7fa;
+  --border-date-range-picker: #2e2d30;
+  --passive-date: #68676a;
+  --color-cancel-btn: #c9c8cc;
+  // radio create new pool
+  --bg-radio: #3d4045;
+  --bg-checked-radio: #f7f7fc;
+  --border-radio: var(--color-primary);
+  // matrix price
+  --bg-matrix-price: #3d4045;
+  // weight change popup
+  --border-weight-change-popup: #3f4040;
+  // date picker
+  --color-date-picker: #fff;
+  // tooltip
+  --tooltip-shadow: 0px 4px 4px rgba(255, 255, 255, 0.05);
+  --tooltip-border: 1px solid #333333;
+  --color-tooltip-bg: #3d4045;
+  --color-tooltip-title: #e0e0e0;
+  --color-tooltip-body: #848e9c;
+  // scroll background
+  --bg-scroll-ff: #2a2c33;
+  // checkbox image
+  --checkbox-image-color: #3d4045;
+  // pop up buttons
+  --pop-up-button--1: #ffff;
+  // Datagrid
+  --datagrid-color: rgba(0, 0, 0, 0.85);
+  --datagrid-backgroundColor: #2a2c33;
+  --datagrid-borderBottom: #333333;
+  --datagrid-cell: rgba(255, 255, 255, 0.65);
+  --datagrid-cellColor: #ffffff;
+  --datagrid-overlayColor: rgba(255, 255, 255, 0.85);
+  //table
+  --table-bg: #212130;
+  --table-bg-hover: #2c2c3a;
   --bg-overview-4: #1b1d24;
+  --color-dialog-background: #2d303b;
+  --color-dialog-title: #ffffff;
+  --color-transfer-box: #424754;
+  --color-text-transfer: #6d7387;
+  --color-text-label: #ffffff;
+  --color-background-input-group: #424754;
+  --color-input-group: #ffffff;
+  --color-max-btn: #00ddb3;
+  --color-background-button-confirm: #44665f;
+  --color-button-confirm-disabled: #2d303b;
+  --color-coin-price: #ffffff;
+  --color-text-desc: #6d7387;
+  --color-search-value: #424754;
+  --color-coin-select: #ffffff;
+  --color-coin-label: #6d7387;
+  --color-select-list: #1b1d24;
+  --color-background-select-search: #2d303b;
+  --color-input-select-search: #ffffff;
+  --color-coin-value: #ffffff;
+  --bg-navbar: #121318;
+  --bg-modal-pre: #2d303b;
+  --border-pre: #1b1d24;
+  --text-tab: #6d7387;
+  --text-tab-active: #ffffff;
+  --text-pre-content: #333333;
+  --switch-color: #090a0c;
+  --switch-bg: #424754;
+  --switch-disable: #424754;
+  --switch-enable: #00ddb3;
+  --bg-tab-general: #002e26;
+  --text-general-active: #00ddb3;
+  --text-select: #ffffff;
+  --bg-select: #1b1d24;
+  --bg-select-search: #2d303b;
+  --text-item-search: #6d7387;
+  --text-item-select-header: #ffffff;
+  --bg-hover-item-select-header: #0f312f;
+  --text-place-holder-search: #424754;
+  --bg-filter-order-book: #002e26;
+  //calculator
+  --bg-select-cal: #424754;
+  --border-line-cal: #1b1d24;
+  --text-leverange: #6d7387;
+  --text-title-input: #ffffff;
+  --bg-btn-cal-disable: #44665f;
+  --text-btn-disable: #2d303b;
+  --bg-input-open-price: #424754;
+  // date picker
+  --color-text-middle: #6d7387;
+  --color-date: #2d303b;
+  --color-place-holder: #888888;
+  --color-date-label: #6d7387;
+  --color-date-modal: #2d303b;
+  --color-date-value: #ffffff;
+  --color-date-range: #424754;
+  --color-week-day-label: #6d7387;
+  --color-not-selected-date: #dedede;
+  --color-date-icon: #ffffff;
+  --color-disable-date: #424754;
+  // table position
+  --color-value-1: #ffffff;
+  --text-leverage: #424754;
+  --color-input-position: #424754;
+  --color-input-modal: #424754;
+  --color-tab: #424754;
+  --color-background-modal: #2d303b;
+  --color-modal-desc: #6d7387;
+  --color-background-select: #424754;
+  --color-order-box: #1b1d24;
+  --color-input-stop-price: #090a0c;
+  --color-table-header: #1b1d24;
+  --color-tab-item: #ffffff;
+  --color-tab-items-active: #002e26;
+  --color-tab-border-right: #000000;
+  --color-select-value: #1b1d24;
+  --color-select-list: #2d303b;
+  --text-tab-inactive: #6d7387;
+  --color-background-select-search: #424754;
+  --color-select-search-placeholder: #6d7387;
+  --color-no-data-desc: #424754;
+  --color-tooltip: #2d303b;
+  --color-divider: #424754;
+  --bg-btn-time: #2d303b;
+  // Future Orders
+  --bg-order-title: #1b1d24;
+  --bg-scroll-thumb: #6d7387;
+  --bg-scroll-track: #2d303b;
+  --bg-scroll-thumb-calulator: #1b1d24;
+  --bg-scroll-track-calulator: #2d303b;
+  --border-calculator: #2d303b;
+  --color-scrollbar: #191919;
+  --color-scrollbar-thumb: #6d7387;
+  --color-scrollbar-track: #2d303b;
+  --color-tab-active: #ffffff;
+  --color-tab-inactive: #6d7387;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.is-mobile {
+  display: none;
+  height: 100%;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+// X-Small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .is-not-mobile {
+    display: none;
+    height: 100%;
+  }
+  .is-mobile {
+    display: block;
+    height: 100%;
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  .is-not-mobile {
+    display: none;
+  }
+  .is-mobile {
+    display: block;
+    height: 100%;
+  }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+  .is-not-mobile {
+    display: none;
+    height: 100%;
+  }
+  .is-mobile {
+    display: block;
+    height: 100%;
+  }
+}
+
+//Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+  .is-not-mobile {
+    display: none;
+    height: 100%;
+  }
+  .is-mobile {
+    display: block;
+    height: 100%;
+  }
+}
+
+.text-primary {
+  color: var(--bg-primary) !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.jutify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
 }
 
 //scroll bar
@@ -175,4 +1026,89 @@ $header-height: 83px;
   background: var(--color-scrollbar-thumb);
   border-radius: 20px;
   height: 30px;
+}
+
+// @media screen and (max-width: 576px) {
+//   ::-webkit-scrollbar {
+//     // width: 0px;
+//     // height: 0px;
+//     background: var(--background-color);
+//     border-radius: 20px;
+//   }
+//   ::-webkit-scrollbar-track {
+//     background: var(--background-color);
+//     // border-radius: 20px;
+//   }
+//   ::-webkit-scrollbar-thumb {
+//     background: var(--color-scrollbar-ob);
+//     // border-radius: 20px;
+//     // height: 30px;
+//   }
+// }
+
+#mouse-over-popover {
+  div:nth-child(3) {
+    background-color: transparent;
+  }
+}
+
+.MuiSlider-thumb {
+  transition: none;
+  &:before {
+    box-shadow: none !important;
+  }
+  &:after {
+    width: 0px !important;
+    height: 0px !important;
+  }
+}
+
+.MuiSlider-mark {
+  &[data-index='0'] {
+    left: -1% !important;
+  }
+  &[data-index='5'] {
+    left: 99% !important;
+  }
+}
+
+.Mui-focusVisible {
+  box-shadow: none !important;
+}
+
+.Mui-active {
+  box-shadow: none !important;
+}
+
+[data-index='0'] {
+  .MuiSlider-valueLabel {
+    margin-left: -4px !important;
+  }
+}
+
+.MuiSlider-markLabel {
+  color: var(--text-leverange) !important;
+}
+
+.MuiPickersDay-root {
+  &:hover {
+    background-color: rgba(0, 221, 179, 0.6) !important;
+    border: none !important;
+  }
+}
+.MuiPickersDateRangeDay-dayOutsideRangeInterval {
+  &:hover {
+    border-color: rgba(0, 221, 179, 0.6) !important;
+    border: none !important;
+  }
+}
+
+.MuiDialog-container {
+  .MuiPaper-root {
+    background-color: var(--switch-color);
+  }
+}
+
+.MuiPaper-rounded {
+  border-radius: 8px !important;
 }
